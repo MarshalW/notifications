@@ -17,8 +17,8 @@ router.all('/subscribe', ctx => {
     console.log(ctx.request.body)
     let subscription = ctx.request.body
     Store.save(subscription).then(() => {
-        ctx.body = 'Subscribe OK.'
     })
+    ctx.body = 'Subscribe OK.'
 })
 
 app.use(router.routes())
