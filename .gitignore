@@ -42,3 +42,5 @@ config/production.json
 .idea
 .idea/
 app.js
+keyfile.json
+config/keyfile.json
