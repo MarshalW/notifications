@@ -13,7 +13,7 @@ router.all('/', ctx => {
 })
 
 
-router.post('/subscribe', ctx => {
+router.all('/subscribe', ctx => {
     console.log(ctx.request.body)
     let subscription = ctx.request.body
     Store.save(subscription).then(() => {
