@@ -6,7 +6,9 @@ import webpush from 'web-push'
 import Config from 'config'
 
 const app = new Koa()
-app.use(bodyParser())
+app.use(bodyParser({
+    enableTypes: ['text', 'json']
+}))
 
 const router = new Router()
 
@@ -16,7 +18,7 @@ router.all('/', ctx => {
 
 
 router.post('/subscribe', ctx => {
-    console.log(ctx.request.body)
+    console.log(ctx.request.rawBody)
     let subscription = ctx.request.body
     Store.save(subscription).then(() => {
     })
@@ -39,8 +41,7 @@ router.post('/push', ctx => {
                 if (err.statusCode == 410) {
                     console.log('this subscription is removed')
                 } else {
-                    console.log('this subscription is no longer valid: ', err)
-                    console.log(err.statusCode)
+                    console.log('this subscription is no longer valid: ', err, err.statusCode)
                 }
             })
         })
