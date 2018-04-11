@@ -32,8 +32,8 @@ router.post('/push', ctx => {
 
     Store.getAll().then(subscriptions => {
         subscriptions.forEach(subscription => {
-            webpush.sendNotification(subscription, 'Hello news~~~').then(() => {
-                console.log(`send to ${subscription}`)
+            webpush.sendNotification(subscription.data(), 'Hello news~~~').then(() => {
+                console.log(`send to ${subscription.data()}`)
             }).catch(err => {
                 if (err.statusCode == 410) {
                     console.log('this subscription is removed')
