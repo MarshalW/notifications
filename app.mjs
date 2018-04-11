@@ -18,8 +18,8 @@ router.all('/', ctx => {
 
 
 router.post('/subscribe', ctx => {
-    console.log(ctx.request.rawBody)
-    let subscription = ctx.request.body
+    console.log(ctx.request.body)
+    let subscription = JSON.parse(ctx.request.body)
     Store.save(subscription).then(() => {
     })
     ctx.body = 'Subscribe OK.'
