@@ -14,4 +14,8 @@ export default class Store {
     static save (subscription) {
         return subscriptions.add(subscription)
     }
+
+    static getAll () {
+        return subscriptions.get()
+    }
 }

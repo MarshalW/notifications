@@ -29,6 +29,22 @@ webpush.setVapidDetails(Config.mailTo, publicKey, privateKey)
 router.post('/push', ctx => {
     console.log(ctx.request.body)
     let news = ctx.request.body
+
+    Store.getAll().then(subscriptions => {
+        subscriptions.forEach(subscription => {
+            webpush.sendNotification('Hello news~~~', then(() => {
+                console.log(`send to ${subscription}`)
+            })).catch(err => {
+                if (err.statusCode == 410) {
+                    console.log('this subscription is removed')
+                } else {
+                    console.log('this subscription is no longer valid: ', err)
+                    console.log(err.statusCode)
+                }
+            })
+        })
+    })
+
     ctx.body = 'Push OK.'
 })
 
