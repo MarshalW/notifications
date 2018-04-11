@@ -35,7 +35,7 @@ router.post('/push', ctx => {
     Store.getAll().then(subscriptions => {
         subscriptions.forEach(subscription => {
             console.log(subscription.data())
-            webpush.sendNotification(subscription.data(), 'Hello news~~~').then(() => {
+            webpush.sendNotification(subscription.data(), news).then(() => {
                 console.log(`send to ${subscription.data()}`)
             }).catch(err => {
                 if (err.statusCode == 410) {
