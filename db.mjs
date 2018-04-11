@@ -8,14 +8,12 @@ const firestore = new Firestore({
     keyFilename: Config.keyFilename
 })
 
-const subscriptions = firestore.collection('subscriptions')
-
 export default class Store {
     static save (subscription) {
-        return subscriptions.add(subscription)
+        return firestore.collection('subscriptions').add(subscription)
     }
 
     static getAll () {
-        return subscriptions.get()
+        return firestore.collection('subscriptions').get()
     }
 }
