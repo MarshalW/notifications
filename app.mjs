@@ -1,9 +1,11 @@
 import Koa from 'koa'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
+import json from 'koa-json'
 import Store from './db'
 import webpush from 'web-push'
 import Config from 'config'
+import news from './news'
 
 const app = new Koa()
 app.use(bodyParser({
@@ -52,7 +54,12 @@ router.post('/push', ctx => {
     ctx.body = 'Push OK.'
 })
 
+router.get('/list', (ctx, next) => {
+    ctx.body = news.list
+})
+
 app.use(router.routes())
+app.use(json())
 
 
 app.listen(3000)

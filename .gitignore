@@ -44,4 +44,4 @@ config/production.json
 app.js
 keyfile.json
 config/keyfile.json
-list.mjs
+news.mjs
